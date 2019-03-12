@@ -1,7 +1,3 @@
-[user]
-      name = qahtanikhalid
-      email = khalid.e.qahtani@gmail.com
-
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar

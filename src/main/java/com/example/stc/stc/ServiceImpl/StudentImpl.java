@@ -4,6 +4,8 @@ import com.example.stc.stc.Entity.Student;
 import com.example.stc.stc.Repository.StudentRepository;
 import com.example.stc.stc.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,33 +27,39 @@ public class StudentImpl implements StudentService {
     }
 
     @Override
-    public Student addStudent(Student student) {
+    public ResponseEntity addStudent(Student student) {
         studentRepository.save(student);
-        return student;
+        return new ResponseEntity("Student Has Added.", HttpStatus.ACCEPTED);
     }
 
     @Override
-    public Student updateStudent(Student student, Long sid) {
-        if (!student.isDeleted()) {
+    public ResponseEntity updateStudent(Student student, Long sid) {
+        Student student1 =studentRepository.findById(sid).get();
+        if (!student1.isDeleted()) {
             student.setSid(sid);
             studentRepository.save(student);
-            return student;
+            return new ResponseEntity("Student Has Updated.", HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity("Student Already UnActive.", HttpStatus.ACCEPTED);
         }
-        return null;
+
     }
 
     @Override
-    public Student deletStudent(Long sid) {
+    public ResponseEntity deletStudent(Long sid) {
         Student student = studentRepository.findById(sid).get();
         student.setDeleted(true);
-        return studentRepository.save(student);
+        studentRepository.save(student);
+        return new ResponseEntity("Student Has Deleted.", HttpStatus.ACCEPTED);
+
     }
 
     @Override
-    public Student undeletStudent(Long sid) {
+    public ResponseEntity undeletStudent(Long sid) {
         Student student = studentRepository.findById(sid).get();
         student.setDeleted(false);
-        return studentRepository.save(student);
+        studentRepository.save(student);
+        return new ResponseEntity("Student Has UnDeleted.", HttpStatus.ACCEPTED);
     }
 
     @Override

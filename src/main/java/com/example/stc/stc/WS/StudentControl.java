@@ -17,8 +17,8 @@ public class StudentControl {
     private StudentService studentService;
 
     @PostMapping(value = "/addstudent")
-    public Student addStudent(@RequestBody Student student){
-        return studentService.addStudent(student);
+    public ResponseEntity addStudent(@RequestBody Student student){
+        return ResponseEntity.ok( studentService.addStudent(student));
     }
 
     @GetMapping(value = "/allstudent")

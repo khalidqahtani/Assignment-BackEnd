@@ -66,4 +66,5 @@ public class StudentImpl implements StudentService {
     public Student findBySid(Long sid) {
         return studentRepository.findBySid(sid);
     }
+
 }

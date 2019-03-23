@@ -16,5 +16,4 @@ public interface StudentService {
     ResponseEntity undeletStudent(Long sid);
     Student findBySid(Long sid);
 
-
 }

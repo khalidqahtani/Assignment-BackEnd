@@ -5,6 +5,7 @@ import com.example.stc.stc.Entity.Student;
 import com.example.stc.stc.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class StudentControl {
     @Autowired
     private StudentService studentService;
+
 
     @PostMapping(value = "/addstudent")
     public ResponseEntity addStudent(@RequestBody Student student){
